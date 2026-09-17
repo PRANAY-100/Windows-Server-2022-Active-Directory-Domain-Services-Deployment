@@ -8,10 +8,10 @@ Target Domain: corp.local
 
 Host Identity: DC01
 
-🎯 Objective
+* Objective
 To perform a clean deployment of Windows Server 2022, configure static network properties, promote the server to an Active Directory Domain Controller (AD DS), and establish the primary DNS server for the corp.local domain.
 
-🛠️ Step 1: Pre-Configuration & Static IP Assignment
+* Step 1: Pre-Configuration & Static IP Assignment
 Before installing Active Directory roles, a Domain Controller must have a fixed, static IP address to prevent network breakages caused by DHCP lease changes.
 
 Opened Network Connections using Win + R > ncpa.cpl.
@@ -30,7 +30,7 @@ Preferred DNS Server: 127.0.0.1 (Loopback address assigned because this server w
 
 Saved settings and verified connectivity via Command Prompt using ping 192.168.1.10.
 
-🏷️ Step 2: System Hostname Standardization
+* Step 2: System Hostname Standardization
 To align with enterprise naming conventions, the default, randomly generated computer name was updated before domain promotion.
 
 Launched Server Manager and selected Local Server.
@@ -41,7 +41,7 @@ Selected Change... and renamed the system to DC01.
 
 Executed a system restart to commit the hostname change.
 
-⚙️ Step 3: Installing Active Directory Domain Services (AD DS)
+* Step 3: Installing Active Directory Domain Services (AD DS)
 With static networking and identity established, the required binaries for Active Directory were deployed via Server Manager.
 
 Opened Server Manager > selected Manage (top right) > clicked Add Roles and Features.
@@ -54,7 +54,7 @@ Accepted the prompt to include required management features (including ADUC and 
 
 Left all default selections on the Features screen and proceeded to click Install.
 
-🚀 Step 4: Domain Controller Promotion & Forest Creation
+* Step 4: Domain Controller Promotion & Forest Creation
 Once the role binaries were installed, the server was promoted from a standalone server to the root Domain Controller of a new forest.
 
 Selected the yellow notification flag in Server Manager and clicked Promote this server to a domain controller.
@@ -69,9 +69,10 @@ Left default settings for DNS options and NetBIOS name (CORP).
 
 Passed the prerequisite checks with no critical errors and initiated the installation.
 
-Allowed the server to perform an automated reboot upon completion.
+Allowed the server to reboot automatically upon completion.
 
-✅ Verification & Post-Deployment Checks
+* Verification & Post-Deployment Checks
+  
 After rebooting, the following steps were taken to verify successful promotion:
 
 Logon Verification: Authenticated as CORP\Administrator on the local console.
